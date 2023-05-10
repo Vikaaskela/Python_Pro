@@ -30,10 +30,11 @@ class Cart:
 
     def __str__(self):
         res = ''
+        total = []
         for product, quantity in zip(self.products, self.quantities):
             res += f'{product} x {quantity} = {product.price * quantity} грн\n'
-        return res
-    
+            total.append(product.price * quantity)
+        return f'{res}Total: {sum(total)}'   
 
           
 
@@ -43,9 +44,9 @@ product_2 = Product('apple', 'Golden', 50)
 product_3 = Product('bread', 'Palianytsia', 30)
 
 
-cart.add_product(product_1)
-cart.add_product(product_2, 3)
-cart.add_product(product_3, 2)
+cart.add_product(product_1, 3)
+cart.add_product(product_2, 2)
+cart.add_product(product_3)
 
 
 print(cart)

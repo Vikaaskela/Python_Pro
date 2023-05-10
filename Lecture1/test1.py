@@ -26,6 +26,7 @@ class Cart:
         for product, quantity in zip(self.products, self.quantities):
             res += f'{product} x {quantity} = {product.price * quantity} грн\n'
         return res
+       
 
         
 
