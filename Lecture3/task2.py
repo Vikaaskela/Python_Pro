@@ -2,6 +2,19 @@
 #Модифікуйте друге домашнє завдання (Дисконт),  додавши перевірки в методи класів та обробку виключних 
 #ситуацій.При спробі встановити знижку не в межах 0-100 % треба викликати виняткову ситуацію, тип якої 
 #реалізувати самостійно.
+import logging
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(name)-10s %(levelname)-8s %(message)s')
+
+filehandler = logging.FileHandler('D:\VISH\Vika project\Python projects\Python Pro\Python_Pro\Lecture3\logtask2.txt')
+filehandler.setLevel(logging.INFO)
+filehandler.setFormatter(formatter)
+
+logger.addHandler(filehandler)
+
 class RateError(Exception):
     def __init__(self,rate, msg):
         self.rate = rate
@@ -18,15 +31,10 @@ class Discount:
             raise RateError(rate, 'Rate can not be less than zero or more than 1')
 
         self.__rate = rate
-
-        
+      
     def discount(self):
         return self.__rate
 
-try:
-    rate = (input('rate='))
-except (RateError, TypeError) as error:
-    print(error)
 
 class RegularDiscount(Discount):
     def __init__(self, rate=0.1):
@@ -64,8 +72,27 @@ class Cart:
         self.quantities = []
 
     def add_product(self, product, quantity=1):
+        if not isinstance(product, Product):
+            raise TypeError()
         self.products.append(product)
         self.quantities.append(quantity)
+        logger.info(f'Add:{product} - {quantity}')
+
+    def remove_product(self, product: Product, quantity=1):
+        if not isinstance(product, Product):
+            raise TypeError()
+        if product not in self.products:
+            logger.info(f'Remove error:{product}')
+            raise ValueError
+        
+        index = self.products.index(product)
+        self.quantities[index] -= quantity
+        if self.quantities[index] <= 0:
+            del self.products[index]
+            del self.quantities[index]
+
+        logger.info(f'Remove:{product} - {quantity}')
+
 
     def total(self):
         return sum(product.price * quantity for product, quantity in zip(self.products, self.quantities))
@@ -89,10 +116,15 @@ class Client:
         return order.total() * (1 - self.discount.discount())
 
 
-cart = Cart()
-pr_1 = Product('banana', 10)
-pr_2 = Product('apple', 20)
-pr_3 = Product('orange', 30)
+    
+
+try:
+    cart = Cart()
+    pr_1 = Product('banana', 10)
+    pr_2 = Product('apple', 20)
+    pr_3 = Product('orange', 30)
+except (RateError, TypeError) as error:
+    print(error)
 
 cart.add_product(pr_1)
 cart.add_product(pr_2, 3)
