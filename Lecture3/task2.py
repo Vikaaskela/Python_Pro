@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s %(name)-10s %(levelname)-8s %(message)s')
 
-filehandler = logging.FileHandler('D:\VISH\Vika project\Python projects\Python Pro\Python_Pro\Lecture3\logtask2.txt')
+filehandler = logging.FileHandler('./Lecture3/logtask2.txt')
 filehandler.setLevel(logging.INFO)
 filehandler.setFormatter(formatter)
 
