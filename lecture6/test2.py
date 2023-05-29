@@ -1,8 +1,6 @@
-#Task 1
-#Для попереднього проєкту (Замовлення продуктів в магазині) реалізувати можливість поєднання двох 
-#кошиків в один за допомогою оператора "+=".
+#Протокол ітератора. Зробити кошик послідовністю.
 import logging
-from itertools import product
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -20,6 +18,7 @@ class PriceError(Exception):
         self.price = price
         self.msg = msg
 
+
 class Product:
     def __init__(self, title: str, price: float | int):
         if not isinstance(price, int | float):
@@ -33,13 +32,32 @@ class Product:
     def __str__(self):
         return self.title
 
+class Iterator:
+    def __init__(self, items, quantities):
+        self.items = items
+        self.quantities = quantities
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.items):
+            self.index += 1
+            return self.items[self.index - 1], self.quantities[self.index - 1]
+        raise StopIteration()
+
+
 class Cart:
     def __init__(self):
         self.products = []
         self.quantities = []
 
     def total(self):
-        return sum(product.price * quantity for product, quantity in zip(self.products, self.quantities))
+        return sum(product.price * quantity for product, quantity in self)
+
+    def __iter__(self):
+        return Iterator(self.products, self.quantities)
 
     def add_product(self, product: Product, quantity=1):
         if not isinstance(product, Product):
@@ -70,7 +88,7 @@ class Cart:
 
     def __str__(self):
         res = ''
-        for product, quantity in zip(self.products, self.quantities):
+        for product, quantity in self:
             res += f"{product.title} x {quantity} = {product.price * quantity} uah\n"
 
         return res
@@ -93,6 +111,9 @@ if __name__ == '__main__':
 
 
         cart_1 += cart_2
-        print(cart_1)
+
+        for item, quantity in cart_1:
+            print(item, quantity)
+
     except (TypeError, PriceError) as error:
         print(error)

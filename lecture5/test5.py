@@ -1,6 +1,3 @@
-#Task 1
-#Для попереднього проєкту (Замовлення продуктів в магазині) реалізувати можливість поєднання двох 
-#кошиків в один за допомогою оператора "+=".
 import logging
 from itertools import product
 
@@ -20,6 +17,7 @@ class PriceError(Exception):
         self.price = price
         self.msg = msg
 
+
 class Product:
     def __init__(self, title: str, price: float | int):
         if not isinstance(price, int | float):
@@ -32,6 +30,22 @@ class Product:
 
     def __str__(self):
         return self.title
+
+
+class GroupIterator:
+    def __init__(self, items):
+        self.items = items
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.items):
+            self.index += 1
+            return self.items[self.index - 1]
+        raise StopIteration()
+
 
 class Cart:
     def __init__(self):
@@ -74,25 +88,23 @@ class Cart:
             res += f"{product.title} x {quantity} = {product.price * quantity} uah\n"
 
         return res
+    
+    def __iter__(self):
+        return GroupIterator(self.products)
 
 
-if __name__ == '__main__':
-    try:
-        pr_1 = Product('banana', 10)
-        pr_2 = Product('apple', 20)
-        pr_3 = Product('orange', 30)
-        pr_4 = Product('kiwi', 10)
 
-        cart_1 = Cart()
-        cart_1.add_product(pr_1)
-        cart_1.add_product(pr_2)
+    
+pr_1 = Product('banana', 10)
+pr_2 = Product('apple', 20)
+pr_3 = Product('orange', 30)
+pr_4 = Product('kiwi', 10)
 
-        cart_2 = Cart()
-        cart_2.add_product(pr_3)
-        cart_2.add_product(pr_4, 2)
+cart = Cart()
+cart += pr_1
+cart += pr_2
+cart += pr_3
+cart += pr_4
 
-
-        cart_1 += cart_2
-        print(cart_1)
-    except (TypeError, PriceError) as error:
-        print(error)
+for product in cart:
+        print(product) 

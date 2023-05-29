@@ -1,0 +1,12 @@
+2023-05-27 16:28:07,173 __main__   INFO     Add: banana - 1 
+2023-05-27 16:28:07,173 __main__   INFO     Add: apple - 1 
+2023-05-27 16:28:07,173 __main__   INFO     Add: orange - 1 
+2023-05-27 16:28:07,174 __main__   INFO     Add: kiwi - 2 
+2023-05-27 18:37:02,066 __main__   INFO     Add: banana - 1 
+2023-05-27 18:37:02,066 __main__   INFO     Add: apple - 1 
+2023-05-27 18:37:02,066 __main__   INFO     Add: orange - 1 
+2023-05-27 18:37:02,066 __main__   INFO     Add: kiwi - 2 
+2023-05-29 15:46:13,133 __main__   INFO     Add: banana - 1 
+2023-05-29 15:46:13,133 __main__   INFO     Add: apple - 1 
+2023-05-29 15:46:13,133 __main__   INFO     Add: orange - 1 
+2023-05-29 15:46:13,133 __main__   INFO     Add: kiwi - 2 
