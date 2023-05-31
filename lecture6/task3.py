@@ -1,12 +1,11 @@
 #Task 3
 #Реалізуйте генераторну функцію, яка повертатиме по одному члену геометричної прогресії.
 def geometric(n):
-    index = 1
-    prev, current = 1, 2
-    while index < n:
-        prev, current = current, current * prev
+    current =  2
+    while  n != 0:
+        current = current * 2
         yield current
-        index += 1
+        n -= 1
 
 for i in geometric(6):
     print(i)
