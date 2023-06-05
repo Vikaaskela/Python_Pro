@@ -1,5 +1,6 @@
 #Task 1
 #Попередній проєкт (Замовлення продуктів в магазині) доповнити можливістю підтримки ітераційного протоколу.
+'''
 import logging
 
 
@@ -31,11 +32,11 @@ class Product:
         self.price = price
 
     def __str__(self):
-        return self.title
+        return f'{self.title}: {self.price}'
 
 class Iterator:
-    def __init__(self, items, quantities):
-        self.items = items
+    def __init__(self, products, quantities):
+        self.products = products
         self.quantities = quantities
         self.index = 0
 
@@ -43,10 +44,11 @@ class Iterator:
         return self
 
     def __next__(self):
-        if self.index < len(self.items):
-            self.index += 1
-            return self.items[self.index - 1], self.quantities[self.index - 1]
-        raise StopIteration()
+        if self.index >= len(self.products):
+            raise StopIteration()
+        self.index += 1
+        return self.products[self.index - 1], self.quantities[self.index - 1]
+        
 
 
 class Cart:
@@ -115,6 +117,109 @@ if __name__ == '__main__':
 
         for item, quantity in cart_1:
             print(item, quantity)
+        print(cart_1.total())
 
     except (TypeError, PriceError) as error:
         print(error)
+'''
+class Product:
+    def __init__(self, title, price):
+        self.price = price
+        self.title = title
+
+    def __str__(self):
+        return f'{self.title}: {self.price}'
+
+
+class CartIterator:
+    def __init__(self, products, quantities):
+        self.products = products
+        self.quantities = quantities
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if len(self.products) <= self.index:
+            raise StopIteration()
+
+        self.index += 1
+        return self.products[self.index - 1], self.quantities[self.index - 1]
+
+
+class Cart:
+
+    def __init__(self):
+        self.products = []
+        self.quantities = []
+
+    def __iter__(self):
+        return CartIterator(self.products, self.quantities)
+
+    def add_product(self, product, quantity=1):
+        self.products.append(product)
+        self.quantities.append(quantity)
+
+    def total(self):
+        return sum(item.price * quantity for item, quantity in self)
+
+
+if __name__ == '__main__':
+    pr_1 = Product('apple', 20)
+    pr_2 = Product('orange', 30)
+    pr_3 = Product('banana', 40)
+    cart = Cart()
+    cart.add_product(pr_1)
+    cart.add_product(pr_2, 2)
+    cart.add_product(pr_3, 3)
+
+    for item, quantity in cart:
+        print(item, quantity)
+
+    print(cart.total())
+
+#Через генераторну функцію
+
+class Product:
+    def __init__(self, title, price):
+        self.price = price
+        self.title = title
+
+    def __str__(self):
+        return f'{self.title}: {self.price}'
+
+
+class Cart:
+
+    def __init__(self):
+        self.products = []
+        self.quantities = []
+
+    def __iter__(self):
+        index = 0
+        while index < len(self.products):
+            yield self.products[index], self.quantities[index]
+            index += 1
+
+    def add_product(self, product, quantity=1):
+        self.products.append(product)
+        self.quantities.append(quantity)
+
+    def total(self):
+        return sum(item.price * quantity for item, quantity in self)
+
+
+if __name__ == '__main__':
+    pr_1 = Product('apple', 20)
+    pr_2 = Product('orange', 30)
+    pr_3 = Product('banana', 40)
+    cart = Cart()
+    cart.add_product(pr_1)
+    cart.add_product(pr_2, 2)
+    cart.add_product(pr_3, 3)
+
+    for item, quantity in cart:
+        print(item, quantity)
+
+    print(cart.total())

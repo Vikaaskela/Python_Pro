@@ -10,3 +10,27 @@
 2023-05-29 15:46:13,133 __main__   INFO     Add: apple - 1 
 2023-05-29 15:46:13,133 __main__   INFO     Add: orange - 1 
 2023-05-29 15:46:13,133 __main__   INFO     Add: kiwi - 2 
+2023-06-02 19:20:31,173 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:20:31,173 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:20:31,173 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:20:31,173 __main__   INFO     Add: kiwi: 10 - 2 
+2023-06-02 19:20:41,222 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:20:41,223 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:20:41,223 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:20:41,223 __main__   INFO     Add: kiwi: 10 - 2 
+2023-06-02 19:22:19,423 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:22:19,424 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:22:19,424 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:22:19,424 __main__   INFO     Add: kiwi: 10 - 2 
+2023-06-02 19:28:54,140 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:28:54,140 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:28:54,140 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:28:54,140 __main__   INFO     Add: kiwi: 10 - 2 
+2023-06-02 19:29:46,181 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:29:46,181 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:29:46,182 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:29:46,182 __main__   INFO     Add: kiwi: 10 - 2 
+2023-06-02 19:30:09,118 __main__   INFO     Add: banana: 10 - 1 
+2023-06-02 19:30:09,118 __main__   INFO     Add: apple: 20 - 1 
+2023-06-02 19:30:09,118 __main__   INFO     Add: orange: 30 - 1 
+2023-06-02 19:30:09,118 __main__   INFO     Add: kiwi: 10 - 2 
