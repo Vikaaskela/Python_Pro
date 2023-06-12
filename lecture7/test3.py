@@ -34,6 +34,7 @@ def text(name):
 res = decorator(text)
 print(res('Oleh'))
 '''
+'''
 def decorator(func):
     def inner(*args, **kwargs):
         return f'<b>{func(*args, **kwargs)}</b>'
@@ -45,3 +46,6 @@ def text(name):
 
 
 print(text('Oleh'))
+'''
+
+

@@ -10,7 +10,6 @@ def power(exp):
 
 f = power(2)
 print(f)
-
 '''
 '''
 def power(exp):
