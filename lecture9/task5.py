@@ -12,18 +12,18 @@ class PaymentInstrument:
     
 class CreditCard(PaymentInstrument):
     def make_payment(self):
-        return 3.14 * r ** 2
+        return 
 
     
 class BankTransfer(PaymentInstrument):
     def make_payment(self):
-        return a * b
+        return 
 
     
 
 class ElectronicWallet(PaymentInstrument):
     def make_payment(self):
-        return (a * h) / 2
+        return 
     
 class PaymentProcessor:
 
@@ -33,6 +33,6 @@ x = CreditCard()
 y = BankTransfer()
 z = ElectronicWallet()
 
-print(x.make_payment(5))
-print(y.make_payment(2, 2))
-print(z.make_payment(2, 3, 4))
+print(x.make_payment())
+print(y.make_payment())
+print(z.make_payment())
